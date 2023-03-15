@@ -1,7 +1,8 @@
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Player, function (sprite, otherSprite) {
+    info.changeScoreBy(1)
     sprite.y += -100
 })
-sprites.onCreated(SpriteKind.Player, function (sprite) {
+function bola2 () {
     bola = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -20,12 +21,16 @@ sprites.onCreated(SpriteKind.Player, function (sprite) {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, SpriteKind.Projectile)
-    bola.setPosition(0, randint(0, 160))
+    bola.setPosition(randint(0, 160), 0)
     bola.setVelocity(50, 50)
     bola.setBounceOnWall(true)
+}
+sprites.onDestroyed(SpriteKind.Projectile, function (sprite) {
+    bola2()
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     info.changeLifeBy(-1)
+    sprites.destroy(bola)
 })
 let bola: Sprite = null
 info.setLife(3)
@@ -41,3 +46,4 @@ let sale = sprites.create(img`
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
     `, SpriteKind.Enemy)
 sale.setPosition(80, 120)
+bola2()
