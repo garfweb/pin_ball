@@ -1,6 +1,6 @@
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Player, function (sprite, otherSprite) {
     info.changeScoreBy(1)
-    sprite.y += -100
+    sprite.vy += -50
 })
 function bola2 () {
     bola = sprites.create(img`
