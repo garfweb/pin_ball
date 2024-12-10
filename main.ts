@@ -1,6 +1,6 @@
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Player, function (sprite, otherSprite) {
     info.changeScoreBy(1)
-    sprite.vy += -50
+    sprite.vy += -100
 })
 function bola2 () {
     bola = sprites.create(img`
@@ -30,7 +30,7 @@ sprites.onDestroyed(SpriteKind.Projectile, function (sprite) {
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     info.changeLifeBy(-1)
-    sprites.destroy(bola)
+    sprites.destroy(sprite)
 })
 let bola: Sprite = null
 info.setLife(3)
